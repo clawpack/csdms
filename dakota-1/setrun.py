@@ -137,7 +137,7 @@ def setrun(claw_pkg='geoclaw'):
         # Output ntimes frames at equally spaced times up to tfinal:
         # Can specify num_output_times = 0 for no output
         clawdata.num_output_times = 2
-        clawdata.tfinal = 1200.
+        clawdata.tfinal = 2400.
         clawdata.output_t0 = False  # output at initial (or restart) time?
         
     elif clawdata.output_style == 2:
@@ -262,7 +262,8 @@ def setrun(claw_pkg='geoclaw'):
 
     if 1:
         # Outside harbor for 3-level run:
-        gauges.append([33, 235.536, 41.67, t_shelf, 1.e10]) 
+        #gauges.append([33, 235.536, 41.67, t_shelf, 1.e10]) 
+        gauges.append([34, 235.80, 41.70, t_shelf, 1.e10]) 
 
 
     if 0:
@@ -309,7 +310,7 @@ def setrun(claw_pkg='geoclaw'):
     amrdata = rundata.amrdata
 
     # max number of refinement levels:
-    amrdata.amr_levels_max = 4
+    amrdata.amr_levels_max = 3
 
     # List of refinement ratios at each level (length at least amr_level_max-1)
     amrdata.refinement_ratios_x = [3, 6, 2, 4, 9]

@@ -70,7 +70,7 @@ def make_output_for_dakota():
     from clawpack.visclaw.data import ClawPlotData
     plotdata = ClawPlotData()
     plotdata.outdir = '_output'   # set to the proper output directory
-    gaugeno = 33                  # gauge number to examine
+    gaugeno = 34                  # gauge number to examine
     g = plotdata.getgauge(gaugeno)
     gauge_max = g.q[3,:].max()
     print "Maximum elevation observed at gauge %s: %6.2f meters" \
