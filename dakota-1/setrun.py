@@ -136,7 +136,7 @@ def setrun(claw_pkg='geoclaw'):
     if clawdata.output_style==1:
         # Output ntimes frames at equally spaced times up to tfinal:
         # Can specify num_output_times = 0 for no output
-        clawdata.num_output_times = 2
+        clawdata.num_output_times = 10
         clawdata.tfinal = 2400.
         clawdata.output_t0 = False  # output at initial (or restart) time?
         
@@ -152,7 +152,8 @@ def setrun(claw_pkg='geoclaw'):
         clawdata.output_t0 = True  # output at initial (or restart) time?
         
 
-    clawdata.output_format = 'binary'      # 'ascii', 'binary', 'netcdf'
+    #clawdata.output_format = 'binary'      # 'ascii', 'binary', 'netcdf'
+    clawdata.output_format = 'ascii'      # 'ascii', 'binary', 'netcdf'
 
     clawdata.output_q_components = 'all'   # could be list such as [True,True]
     clawdata.output_aux_components = 'none'  # could be list
@@ -264,6 +265,7 @@ def setrun(claw_pkg='geoclaw'):
         # Outside harbor for 3-level run:
         #gauges.append([33, 235.536, 41.67, t_shelf, 1.e10]) 
         gauges.append([34, 235.80, 41.70, t_shelf, 1.e10]) 
+        print('added gauge')
 
 
     if 0:

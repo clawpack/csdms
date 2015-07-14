@@ -1,0 +1,35 @@
+# Dakota input file
+
+environment
+  tabular_data
+    tabular_data_file = 'dakota.dat'
+
+method
+  multidim_parameter_study
+    partitions = 3, 3
+
+# 
+# 
+variables
+  continuous_design = 2
+    descriptors = 'z1', 'z2'
+    lower_bounds = 0.0, 0.0
+    upper_bounds = 1.5, 1.5
+
+interface
+  fork
+  analysis_driver = 'make_dtopo_and_run.py'
+  parameters_file = 'params.in'
+  results_file = 'results.out'
+  work_directory 
+    named 'run'
+    directory_tag
+    directory_save 
+  file_save  
+
+#  
+responses
+  response_functions = 1
+  response_descriptors = 'max'
+  no_gradients
+  no_hessians

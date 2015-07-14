@@ -1,0 +1,81 @@
+rm -f .output
+python /home/drim/local/clawpack/clawutil/src/python/clawutil/runclaw.py xgeoclaw                  _output                \
+	True                    False                     . True False None
+Reading data file: claw.data
+         first 5 lines are comments and will be skipped
+Reading data file: amr.data
+         first 5 lines are comments and will be skipped
+Reading data file: regions.data
+         first 5 lines are comments and will be skipped
+Reading data file: gauges.data
+         first 5 lines are comments and will be skipped
+Reading data file: fgmax.data
+         first 5 lines are comments and will be skipped
+  
+ Running amrclaw ...  
+  
+Reading data file: geoclaw.data
+         first 5 lines are comments and will be skipped
+Reading data file: refinement.data
+         first 5 lines are comments and will be skipped
+Reading data file: dtopo.data
+         first 5 lines are comments and will be skipped
+Reading data file: topo.data
+         first 5 lines are comments and will be skipped
+  
+ Reading topography file  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/etopo1-230250035050.asc                                                                     
+Reading data file: qinit.data
+         first 5 lines are comments and will be skipped
+   qinit_type = 0, no perturbation
+Reading data file: fixed_grids.data
+         first 5 lines are comments and will be skipped
+Reading data file: surge.data
+         first 5 lines are comments and will be skipped
+Reading data file: friction.data
+         first 5 lines are comments and will be skipped
+ Storage allocated...
+there are    1 grids with       48 cells at level   1
+   Setting initial dt to    1.0000000000000000     
+  max threads set to           24
+  
+ Done reading data, starting computation ...  
+  
+ Total mass at initial time:    1042656446865868.8     
+AMRCLAW: Frame    1 output files done at time t = 0.120000D+04
+
+AMRCLAW: Frame    2 output files done at time t = 0.240000D+04
+
+ Done integrating to time    2400.0000000000000     
+Total time to solution =       3.83600000 s, using 24 threads
+Total advanc time on level   1 =       0.15300000 s
+Total advanc time on level   2 =       0.48600000 s
+Total advanc time on level   3 =       3.03400000 s
+Total updating   time                  0.18200000 s
+Total valout     time                  0.00400000 s
+
+Total regridding time (clock)          0.03600000 s
+   Total Grdfit     time (clock)           0.04200000 s
+      Total Flglvl  time                      0.04200000 s
+         Total    Flagger     time (clock)           0.02100000 s
+         Total    Bufnst     time (clock)           0.02100000 s
+   Total gfixup     time  (clock)         0.01500000 s
+      Total filval (wall) time            0.01500000 s
+          Total filval (all cores) time           0.02900000 s
+
+Total setaux (all cores) time           1.91400000 s
+
+  integration time, still not counting saveqc
+Total Bound (all levels) wall time            1.27500000 s
+Total stepgrid (all levels) wall time         2.39000000 s
+==> runclaw: Will take data from  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1
+==> runclaw: Will write output to  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/_output
+Will save to  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/_output/claw_git_status.txt
+==> runclaw: Removing all old fort files in  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/_output
+
+==> Running with command:
+    /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/xgeoclaw
+
+==> runclaw: Finished executing
+
+==> runclaw: Done executing /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/xgeoclaw via clawutil.runclaw.py
+==> runclaw: Output is in  /home/drim/local/clawpack/geoclaw/examples/csdms/dakota-1/_output

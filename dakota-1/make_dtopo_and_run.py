@@ -1,4 +1,7 @@
+#!/usr/bin/env python
 
+import matplotlib
+matplotlib.use('Agg')
 from pylab import *
 import os,sys
 from clawpack.geoclaw import dtopotools, topotools
@@ -7,7 +10,19 @@ from clawpack.visclaw import colormaps
 
 sf1 = 'acszb65'; sf2 = 'acsza65'; sf3 = 'acszb64'; sf4 = 'acsza64'
 fault = dtopotools.SiftFault()
+print(sys.argv)
 
+def parse_params_file(param_file):
+    params_dict = {}
+    with open(param_file,mode='r') as param_file_open:
+        param_str_list = param_file_open.readlines()
+    for line in param_str_list:
+        split_line = line.replace('\n','').split()
+        print(split_line)
+        val = split_line[0]
+        key = split_line[1]
+        params_dict[key] = val
+    return params_dict
 
 def plot_fault_dtopo(fault,dtopo):
     fig = figure(figsize=(14,6))
@@ -63,13 +78,14 @@ def make_dtopo(z1,z2):
 
 def run_geoclaw():
     os.system('make data')
+    os.system('make .exe')
     print "Running GeoClaw..."
     os.system('make output > output.txt')
 
 def make_output_for_dakota():
     from clawpack.visclaw.data import ClawPlotData
     plotdata = ClawPlotData()
-    plotdata.outdir = '_output'   # set to the proper output directory
+    plotdata.outdir = os.path.join(os.getcwd() , '_output')   # set to the proper output directory
     gaugeno = 34                  # gauge number to examine
     g = plotdata.getgauge(gaugeno)
     gauge_max = g.q[3,:].max()
@@ -77,7 +93,7 @@ def make_output_for_dakota():
         % (gaugeno, gauge_max)
     fname = 'results.out'
     f = open(fname,'w')
-    f.write("%6.2f\n" % gauge_max)
+    f.write("%6.2f\n" % -gauge_max)
     f.close()
     print "Created ",fname
 
@@ -91,9 +107,23 @@ def make_output_for_dakota():
         savefig(fname)
         print 'Created ',fname
 
+def create_symbolic_links(file_name):
+    os.system('ln -s ' + os.path.join(root_dir,file_name) + ' '  + os.path.join(os.getcwd(),file_name))
+
 if __name__=='__main__':
-    z1 = float(sys.argv[1])
-    z2 = float(sys.argv[2])
+    root_dir = os.path.dirname(os.path.realpath(__file__))
+    print(root_dir)
+    params_dict = parse_params_file(sys.argv[1])
+    z1 = float(params_dict['z1'])
+    z2 = float(params_dict['z2'])
+
+    create_symbolic_links('etopo1-230250035050.asc')
+    create_symbolic_links('setrun.py')
+    create_symbolic_links('Makefile')
+    create_symbolic_links('fgmax1.txt')
+    create_symbolic_links('fgmax2.txt')
+    create_symbolic_links('fgmax3.txt')
+    create_symbolic_links('fgmax4.txt')
     make_dtopo(z1, z2)
     run_geoclaw()
     make_output_for_dakota()

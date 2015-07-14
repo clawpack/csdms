@@ -1,0 +1,46 @@
+# Dakota input file
+
+environment
+  tabular_data
+    tabular_data_file = 'dakota.dat'
+  #graphics
+    #tabular_graphics_data
+    #tabular_graphics_file = 'dakota_herbie_gpais.dat'
+
+method
+    gpais
+    emulator_samples = 100
+    max_iterations = 5
+    response_levels = -3
+    compute probabilities
+    samples = 100
+    seed 4326
+# 
+# 
+variables
+#  uniform_uncertain = 2
+#    descriptors = 'z1', 'z2'
+#    lower_bounds = 0.0, 0.0
+#    upper_bounds = 5., 5.
+  normal_uncertain = 2
+    descriptors = 'z1', 'z2'
+    means = 0., 0.
+    std_deviations = 1., 1.
+
+interface
+  fork
+  analysis_driver = 'make_dtopo_and_run.py'
+  parameters_file = 'params.in'
+  results_file = 'results.out'
+  work_directory 
+    named 'run'
+    directory_tag
+    directory_save 
+  file_save  
+
+#  
+responses
+  response_functions = 1
+  response_descriptors = 'max'
+  no_gradients
+  no_hessians
