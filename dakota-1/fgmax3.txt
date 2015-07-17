@@ -1,0 +1,9 @@
+300                 # tstart_max
+1e+10                 # tend_max
+10                 # dt_check
+5                 # min_level_check
+0.01                 # arrival_tol
+1                 # point_style
+269                 # npts
+235.815   41.743            # x1, y1
+235.815   41.768            # x2, y2
